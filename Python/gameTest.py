@@ -19,12 +19,18 @@ def log_and_print(message):
     logging.info(message)
     print(message)
 
-# Global variables that will be placeholders for values
+# Global variables that will be placeholders for character values
 tack = "x"
 empty = "o"
 off_board = "-"
 move_separator = " to "
 
+# Gloval variables that govern game rules
+row_delta = [1, 0, -1, 0, 1, -1] 
+col_delta = [0, 1, 0, -1, 1, -1]
+row_start = [0, 1, 2, 2]
+col_start = [0, 0, 0, 1]
+    
 '''Create a full board'''
 def create_board(rows):
     board = []
@@ -77,7 +83,6 @@ def remove_tack(board, row, col):
 
 '''Encode moves according to a specific sequence, use these to populate list in possible moves'''
 def move_encoder(root, target):
-    # NOTE - Assumed entries as numbers
     return str(root) + move_separator + str(target)
 
 '''Convert a grid value to a numeric value (e.g. 0,0 is 1)'''
@@ -92,18 +97,36 @@ def grid_to_num(row, col):
         log_and_print(f"Converted coordinate ({row},{col}) to {num}")
         return num
 
+
+'''From a given board, return numeric locations of all character values'''
+def char_locations(board, character):
+    char_list = []
+    row = 0
+    for s in board:
+        col = 0
+        my_list = list(s)
+        for k in my_list:
+            if (k == character):
+                char_list.append(grid_to_num(row, col))
+            col += 1
+        row += 1
+    return char_list
+
 '''Return a list of possible_moves according to a given board'''
 def possible_moves(board):
     # NOTE - Any tack might be able to "move"
     # NOTE - All moves must jump over another tack
     # NOTE - All moves must land in an empty (inbounds) space
-    pass
+    tack_list = char_locations(board, character=tack)
+    empty_list = char_locations(board, character=empty)
+
+    # Step 2: Take each tack and "try" to move in all directions
 
 
 # Testing functions as they are written
 board = create_board(rows=5)
 board = remove_tack(board, row=0, col=0)
 
-grid_to_num(row=3, col=1)
-
-print(move_encoder(root=12, target=14))
+log_and_print(grid_to_num(row=3, col=1))
+log_and_print(move_encoder(root=12, target=14))
+log_and_print(char_locations(board, character=tack))
