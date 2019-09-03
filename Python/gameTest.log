@@ -2,24 +2,25 @@ INFO:root:['x----', 'xx---', 'xxx--', 'xxxx-', 'xxxxx']
 INFO:root:Tack is inside board range, returning True
 INFO:root:Tack successfully removed, new board is 
  ['o----', 'xx---', 'xxx--', 'xxxx-', 'xxxxx']
-INFO:root:Converted coordinate (1,0) to 2
-INFO:root:Converted coordinate (1,1) to 3
+INFO:root:Tack is inside board range, returning True
+INFO:root:Tack successfully removed, new board is 
+ ['o----', 'xx---', 'xxx--', 'xxxx-', 'xoxxx']
+INFO:root:row_list for char x: [1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4]
+INFO:root:col_list for char x: [0, 1, 0, 1, 2, 0, 1, 2, 3, 0, 2, 3, 4]
+INFO:root:row_list for char o: [0, 4]
+INFO:root:col_list for char o: [0, 1]
 INFO:root:Converted coordinate (2,0) to 4
-INFO:root:Converted coordinate (2,1) to 5
-INFO:root:Converted coordinate (2,2) to 6
-INFO:root:Converted coordinate (3,0) to 7
-INFO:root:Converted coordinate (3,1) to 8
-INFO:root:Converted coordinate (3,2) to 9
-INFO:root:Converted coordinate (3,3) to 10
 INFO:root:Converted coordinate (4,0) to 11
-INFO:root:Converted coordinate (4,1) to 12
-INFO:root:Converted coordinate (4,2) to 13
-INFO:root:Converted coordinate (4,3) to 14
-INFO:root:Converted coordinate (4,4) to 15
-INFO:root:char_list for char x: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+INFO:root:Converted coordinate (2,0) to 4
 INFO:root:Converted coordinate (0,0) to 1
-INFO:root:char_list for char o: [1]
-INFO:root:row_list for char x: [1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4]
-INFO:root:col_list for char x: [0, 1, 0, 1, 2, 0, 1, 2, 3, 0, 1, 2, 3, 4]
-INFO:root:row_list for char o: [0]
-INFO:root:col_list for char o: [0]
+INFO:root:Converted coordinate (2,1) to 5
+INFO:root:Converted coordinate (4,1) to 12
+INFO:root:Converted coordinate (2,1) to 5
+INFO:root:Nice try, column can't be greater than row
+INFO:root:Converted coordinate (2,2) to 6
+INFO:root:Converted coordinate (0,0) to 1
+INFO:root:Converted coordinate (4,2) to 13
+INFO:root:Converted coordinate (4,0) to 11
+INFO:root:Converted coordinate (4,3) to 14
+INFO:root:Converted coordinate (4,1) to 12
+INFO:root:possible_moves: ['4 to 11', '4 to 1', '5 to 12', '5 to None', '6 to 1', '13 to 11', '14 to 12']

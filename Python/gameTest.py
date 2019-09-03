@@ -26,10 +26,10 @@ off_board = "-"
 move_separator = " to "
 
 # Gloval variables that govern game rules
-row_delta = [1, 0, -1, 0, 1, -1] 
-col_delta = [0, 1, 0, -1, 1, -1]
-row_start = [0, 1, 2, 2]
-col_start = [0, 0, 0, 1]
+all_row_delta = [1, 0, -1, 0, 1, -1] 
+all_col_delta = [0, 1, 0, -1, 1, -1]
+all_row_start = [0, 1, 2, 2]
+all_col_start = [0, 0, 0, 1]
     
 '''Create a full board'''
 def create_board(rows):
@@ -65,17 +65,18 @@ def reassign_space(original, index, target):
     return ''.join(my_list)
 
 '''Remove a tack from a full board, must make sure it is a valid removal'''
-def remove_tack(board, row, col):
-    if (inbounds(board, row, col)):
-        my_row = board[row]
-        my_tack = my_row[col]
-        if (my_tack == tack):
-            board[row] = reassign_space(board[row], col, empty)
-            log_and_print(f"Tack successfully removed, new board is \n {board}")
-            return board
-        else:
-            log_and_print("Tack desired to remove is not a tack")
-            return board
+def remove_tacks(board, all_rows, all_cols):
+    for i in range(len(all_rows)):
+        row, col = all_rows[i], all_cols[i]
+        if (inbounds(board, row, col)):
+            my_row = board[row]
+            my_tack = my_row[col]
+            if (my_tack == tack):
+                board[row] = reassign_space(board[row], col, empty)
+                log_and_print(f"Tack successfully removed, new board is \n {board}")
+            else:
+                log_and_print("Tack desired to remove is not a tack")
+    return board
 
 '''Encode moves according to a specific sequence, use these to populate list in possible moves'''
 def move_encoder(root, target):
@@ -92,7 +93,6 @@ def grid_to_num(row, col):
         num = index + col + 1
         log_and_print(f"Converted coordinate ({row},{col}) to {num}")
         return num
-
 
 '''From a given board, return numeric locations of all character values'''
 def char_locations(board, character, grid):
@@ -118,25 +118,39 @@ def char_locations(board, character, grid):
         log_and_print(f"col_list for char {character}: {col_list}")
         return (row_list, col_list)
 
-'''Verify tack move is valid'''
-def valid_move():
-    pass
-
 '''Return a list of possible_moves according to a given board'''
 def possible_moves(board):
     # NOTE - Any tack might be able to "move"
     # NOTE - All moves must jump over another tack
     # NOTE - All moves must land in an empty (inbounds) space
-    tack_list = char_locations(board, character=tack, grid=True)
-    empty_list = char_locations(board, character=empty, grid=True)
+    possible_moves = []
 
+    # Step 1: Get a list of where all tacks and empty spots are
+    # tack_list = char_locations(board, character=tack, grid=True)
     tack_rows, tack_cols = char_locations(board, character=tack, grid=False)
+    # empty_list = char_locations(board, character=empty, grid=True)
     empty_rows, empty_cols = char_locations(board, character=empty, grid=False)
-    # Step 2: Take each tack and "try" to move in all directions
+    
+    # Step 2a: Take each tack and "try" to move in all directions (using global rules above)
+    for i in range(len(tack_rows)):
+        my_row, my_col = tack_rows[i], tack_cols[i]
+        for k in range(len(all_row_delta)):
+            row_delta, col_delta = all_row_delta[k], all_col_delta[k]
+            side_row, side_col = my_row + 1 * row_delta, my_col + 1 * col_delta
+            jump_row, jump_col = my_row + 2 * row_delta, my_col + 2 * col_delta
+            # Step 2b: Verify that neighbor is tack and, jump is empty
+            if (side_row in tack_rows and side_col in tack_cols):
+                if (jump_row in empty_rows and jump_col in empty_cols):
+                    start_pos, end_pos = grid_to_num(my_row, my_col), grid_to_num(jump_row, jump_col)
+                    possible_moves.append(move_encoder(start_pos, end_pos))
+
+    # Step 3: Return all possible moves
+    log_and_print(f"possible_moves: {possible_moves}")
+    return possible_moves
 
 
 # Testing functions as they are written
 board = create_board(rows=5)
-board = remove_tack(board, row=0, col=0)
+board = remove_tacks(board, all_rows=[0, 4], all_cols=[0, 1])
 
 possible_moves(board)
