@@ -177,16 +177,18 @@ def possible_moves(board):
 '''Update the board with the move'''
 def make_move(board, encoded_move):
     # Step 1: Split encoded move into parts
-    start_num, end_num = encoded_move.split(move_separator)
+    start_str, end_str = encoded_move.split(move_separator)
+    start_num, end_num = int(start_str), int(end_str)
     start_row, start_col = num_to_grid(start_num)
     end_row, end_col = num_to_grid(end_num)
     # Step 2: Update the board accordingly
     board[start_row] = reassign_space(original=board[start_row], index=start_col, target=empty)
     # TODO Make jumped tack an emtpy spot (how to do this, must preserve information, recalc is inefficient)
+    log_and_print("Note TODO: change jumped tack to empty slot")
     board[end_row] = reassign_space(original=board[end_row], index=end_col, target=tack)
 
     # Step 3: Return the updated board
-    log_and_print(f"Move: ({encoded_move}) was successfully implemented")
+    log_and_print(f"Move: ({encoded_move}) was successfully implemented\nNew Board:\n{board}")
     return board
 
 def run():

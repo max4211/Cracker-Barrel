@@ -1,1 +1,32 @@
-INFO:root:Converted num: 14 to grid: (4, 3)
+INFO:root:['x----', 'xx---', 'xxx--', 'xxxx-', 'xxxxx']
+INFO:root:Tack is inside board range, returning True
+INFO:root:Tack successfully removed, new board is 
+ ['o----', 'xx---', 'xxx--', 'xxxx-', 'xxxxx']
+INFO:root:Tack is inside board range, returning True
+INFO:root:Tack successfully removed, new board is 
+ ['o----', 'xx---', 'xxx--', 'xxxx-', 'xoxxx']
+INFO:root:row_list for char x: [1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4]
+INFO:root:col_list for char x: [0, 1, 0, 1, 2, 0, 1, 2, 3, 0, 2, 3, 4]
+INFO:root:row_list for char o: [0, 4]
+INFO:root:col_list for char o: [0, 1]
+INFO:root:Converted coordinate (2,0) to 4
+INFO:root:Converted coordinate (4,0) to 11
+INFO:root:Converted coordinate (2,0) to 4
+INFO:root:Converted coordinate (0,0) to 1
+INFO:root:Converted coordinate (2,1) to 5
+INFO:root:Converted coordinate (4,1) to 12
+INFO:root:Converted coordinate (2,1) to 5
+INFO:root:Nice try, column can't be greater than row
+INFO:root:Converted coordinate (2,2) to 6
+INFO:root:Converted coordinate (0,0) to 1
+INFO:root:Converted coordinate (4,2) to 13
+INFO:root:Converted coordinate (4,0) to 11
+INFO:root:Converted coordinate (4,3) to 14
+INFO:root:Converted coordinate (4,1) to 12
+INFO:root:possible_moves: ['4 to 11', '4 to 1', '5 to 12', '5 to None', '6 to 1', '13 to 11', '14 to 12']
+INFO:root:Converted num: 4 to grid: (2, 0)
+INFO:root:Converted num: 11 to grid: (4, 0)
+INFO:root:Note TODO: change jumped tack to empty slot
+INFO:root:Move: (4 to 11) was successfully implemented
+New Board:
+['o----', 'xx---', 'oxx--', 'xxxx-', 'xoxxx']
