@@ -23,6 +23,7 @@ def log_and_print(message):
 tack = "x"
 empty = "o"
 off_board = "-"
+move_separator = " to "
 
 '''Create a full board'''
 def create_board(rows):
@@ -76,13 +77,33 @@ def remove_tack(board, row, col):
 
 '''Encode moves according to a specific sequence, use these to populate list in possible moves'''
 def move_encoder(root, target):
-    pass
+    # NOTE - Assumed entries as numbers
+    return str(root) + move_separator + str(target)
+
+'''Convert a grid value to a numeric value (e.g. 0,0 is 1)'''
+def grid_to_num(row, col):
+    if (col > row):
+        log_and_print("Nice try, column can't be greater than row")
+    elif (col <= row):
+        index = 0
+        for i in range(row + 1):
+            index += i
+        num = index + col + 1
+        log_and_print(f"Converted coordinate ({row},{col}) to {num}")
+        return num
 
 '''Return a list of possible_moves according to a given board'''
 def possible_moves(board):
+    # NOTE - Any tack might be able to "move"
+    # NOTE - All moves must jump over another tack
+    # NOTE - All moves must land in an empty (inbounds) space
     pass
 
+
+# Testing functions as they are written
 board = create_board(rows=5)
 board = remove_tack(board, row=0, col=0)
 
+grid_to_num(row=3, col=1)
 
+print(move_encoder(root=12, target=14))
