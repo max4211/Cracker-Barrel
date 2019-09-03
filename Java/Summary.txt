@@ -1,0 +1,6 @@
+Position: 	 Time (ms): 	 Results(%):
+--------- 	 ---------- 	 -----------
+Corner point		2390		5.23
+One offset		1144		5.05
+Center of edge		4485		7.42
+Center of board		550		1.12
