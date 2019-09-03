@@ -8,6 +8,7 @@ Goal: Test out various game implementations
 
 import os
 import logging
+import random
 
 log_name = "gameTest.log"
 # Clear logger each time
@@ -94,6 +95,30 @@ def grid_to_num(row, col):
         log_and_print(f"Converted coordinate ({row},{col}) to {num}")
         return num
 
+'''Convert a numeric value to row and column values'''
+def num_to_grid(num):
+    # NOTE - Idea, what if I had a general map to lookup row, col values based on index
+    # NOTE - ^^^ Is this more efficient?
+
+    # Check edge cases first
+    if (num <= 0):
+        log_and_print(f"Invalid grid number ({num}), try again")
+        return
+
+    row, col, index = 0, 0, 1
+    while (index < num):
+        # TODO - Finish this method
+        # Update row and col appropriately
+        if (col < row):
+            col += 1
+        elif (col == row):
+            col = 0
+            row += 1
+        index += 1
+
+    log_and_print(f"Converted num: {num} to grid: ({row}, {col})")
+    return (row, col)
+
 '''From a given board, return numeric locations of all character values'''
 def char_locations(board, character, grid):
     char_list, row_list, col_list = [], [], []
@@ -120,9 +145,9 @@ def char_locations(board, character, grid):
 
 '''Return a list of possible_moves according to a given board'''
 def possible_moves(board):
-    # NOTE - Any tack might be able to "move"
-    # NOTE - All moves must jump over another tack
-    # NOTE - All moves must land in an empty (inbounds) space
+    # NOTE - Idea, make possible moves a dictionary with encodings and row, col values
+    # NOTE - Lots of parallelism seems inefficient
+    # TODO - Clear this up, num to grid converter will solve short term problems
     possible_moves = []
 
     # Step 1: Get a list of where all tacks and empty spots are
@@ -141,6 +166,7 @@ def possible_moves(board):
             # Step 2b: Verify that neighbor is tack and, jump is empty
             if (side_row in tack_rows and side_col in tack_cols):
                 if (jump_row in empty_rows and jump_col in empty_cols):
+                    # Append possible moves appropriately
                     start_pos, end_pos = grid_to_num(my_row, my_col), grid_to_num(jump_row, jump_col)
                     possible_moves.append(move_encoder(start_pos, end_pos))
 
@@ -148,9 +174,29 @@ def possible_moves(board):
     log_and_print(f"possible_moves: {possible_moves}")
     return possible_moves
 
+'''Update the board with the move'''
+def make_move(board, encoded_move):
+    # Step 1: Split encoded move into parts
+    start_num, end_num = encoded_move.split(move_separator)
+    start_row, start_col = num_to_grid(start_num)
+    end_row, end_col = num_to_grid(end_num)
+    # Step 2: Update the board accordingly
+    board[start_row] = reassign_space(original=board[start_row], index=start_col, target=empty)
+    # TODO Make jumped tack an emtpy spot (how to do this, must preserve information, recalc is inefficient)
+    board[end_row] = reassign_space(original=board[end_row], index=end_col, target=tack)
+
+    # Step 3: Return the updated board
+    log_and_print(f"Move: ({encoded_move}) was successfully implemented")
+    return board
+
+def run():
+    board = create_board(rows=5)
+    board = remove_tacks(board, all_rows=[0, 4], all_cols=[0, 1])
+
+    all_moves = possible_moves(board)
+    random_move = all_moves[random.randint(0, len(all_moves))]
+
+    new_board = make_move(board, random_move)
 
 # Testing functions as they are written
-board = create_board(rows=5)
-board = remove_tacks(board, all_rows=[0, 4], all_cols=[0, 1])
-
-possible_moves(board)
+run()
