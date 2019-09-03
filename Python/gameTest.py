@@ -49,10 +49,6 @@ def next_row(num, rows):
             my_row += off_board
     return my_row
 
-'''Verify tack move is valid'''
-def valid_move():
-    pass
-
 '''Verify that tack selected is inbounds on the board'''
 def inbounds(board, row, col):
     if row >= 0 and row < len(board) and col >= 0 and col < len(board):
@@ -99,27 +95,43 @@ def grid_to_num(row, col):
 
 
 '''From a given board, return numeric locations of all character values'''
-def char_locations(board, character):
-    char_list = []
+def char_locations(board, character, grid):
+    char_list, row_list, col_list = [], [], []
     row = 0
     for s in board:
         col = 0
         my_list = list(s)
         for k in my_list:
             if (k == character):
-                char_list.append(grid_to_num(row, col))
+                if (grid == True):
+                    char_list.append(grid_to_num(row, col))
+                else:
+                    row_list.append(row)
+                    col_list.append(col)
             col += 1
         row += 1
-    return char_list
+    if (grid == True):
+        log_and_print(f"char_list for char {character}: {char_list}")
+        return char_list
+    else:
+        log_and_print(f"row_list for char {character}: {row_list}")
+        log_and_print(f"col_list for char {character}: {col_list}")
+        return (row_list, col_list)
+
+'''Verify tack move is valid'''
+def valid_move():
+    pass
 
 '''Return a list of possible_moves according to a given board'''
 def possible_moves(board):
     # NOTE - Any tack might be able to "move"
     # NOTE - All moves must jump over another tack
     # NOTE - All moves must land in an empty (inbounds) space
-    tack_list = char_locations(board, character=tack)
-    empty_list = char_locations(board, character=empty)
+    tack_list = char_locations(board, character=tack, grid=True)
+    empty_list = char_locations(board, character=empty, grid=True)
 
+    tack_rows, tack_cols = char_locations(board, character=tack, grid=False)
+    empty_rows, empty_cols = char_locations(board, character=empty, grid=False)
     # Step 2: Take each tack and "try" to move in all directions
 
 
@@ -127,6 +139,4 @@ def possible_moves(board):
 board = create_board(rows=5)
 board = remove_tack(board, row=0, col=0)
 
-log_and_print(grid_to_num(row=3, col=1))
-log_and_print(move_encoder(root=12, target=14))
-log_and_print(char_locations(board, character=tack))
+possible_moves(board)

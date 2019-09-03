@@ -2,9 +2,6 @@ INFO:root:['x----', 'xx---', 'xxx--', 'xxxx-', 'xxxxx']
 INFO:root:Tack is inside board range, returning True
 INFO:root:Tack successfully removed, new board is 
  ['o----', 'xx---', 'xxx--', 'xxxx-', 'xxxxx']
-INFO:root:Converted coordinate (3,1) to 8
-INFO:root:8
-INFO:root:12 to 14
 INFO:root:Converted coordinate (1,0) to 2
 INFO:root:Converted coordinate (1,1) to 3
 INFO:root:Converted coordinate (2,0) to 4
@@ -19,4 +16,10 @@ INFO:root:Converted coordinate (4,1) to 12
 INFO:root:Converted coordinate (4,2) to 13
 INFO:root:Converted coordinate (4,3) to 14
 INFO:root:Converted coordinate (4,4) to 15
-INFO:root:[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+INFO:root:char_list for char x: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+INFO:root:Converted coordinate (0,0) to 1
+INFO:root:char_list for char o: [1]
+INFO:root:row_list for char x: [1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4]
+INFO:root:col_list for char x: [0, 1, 0, 1, 2, 0, 1, 2, 3, 0, 1, 2, 3, 4]
+INFO:root:row_list for char o: [0]
+INFO:root:col_list for char o: [0]
