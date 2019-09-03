@@ -1,0 +1,4 @@
+INFO:root:['x----', 'xx---', 'xxx--', 'xxxx-', 'xxxxx']
+INFO:root:Tack is inside board range, returning True
+INFO:root:Tack successfully removed, new board is 
+ ['o----', 'xx---', 'xxx--', 'xxxx-', 'xxxxx']
