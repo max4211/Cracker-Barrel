@@ -29,8 +29,9 @@ move_separator = " to "
 # Gloval variables that govern game rules
 all_row_delta = [1, 0, -1, 0, 1, -1] 
 all_col_delta = [0, 1, 0, -1, 1, -1]
-all_row_start = [0, 1, 2, 2]
-all_col_start = [0, 0, 0, 1]
+unique_start = [1, 2, 4, 5]
+# all_row_start = [0, 1, 2, 2]
+# all_col_start = [0, 0, 0, 1]
     
 '''Create a full board'''
 def create_board(rows):
@@ -80,8 +81,9 @@ def remove_tacks(board, all_rows, all_cols):
     return board
 
 '''Encode moves according to a specific sequence, use these to populate list in possible moves'''
-def move_encoder(root, target):
-    return str(root) + move_separator + str(target)
+# TODO Make dynamic by move size
+def move_encoder(start_pos, mid_pos, end_pos):
+    return str(start_pos) + move_separator + str(mid_pos) + move_separator + str(end_pos)
 
 '''Convert a grid value to a numeric value (e.g. 0,0 is 1)'''
 def grid_to_num(row, col):
@@ -161,14 +163,17 @@ def possible_moves(board):
         my_row, my_col = tack_rows[i], tack_cols[i]
         for k in range(len(all_row_delta)):
             row_delta, col_delta = all_row_delta[k], all_col_delta[k]
-            side_row, side_col = my_row + 1 * row_delta, my_col + 1 * col_delta
-            jump_row, jump_col = my_row + 2 * row_delta, my_col + 2 * col_delta
+            mid_row, mid_col = my_row + 1 * row_delta, my_col + 1 * col_delta
+            end_row, end_col = my_row + 2 * row_delta, my_col + 2 * col_delta
             # Step 2b: Verify that neighbor is tack and, jump is empty
-            if (side_row in tack_rows and side_col in tack_cols):
-                if (jump_row in empty_rows and jump_col in empty_cols):
+            if (mid_row in tack_rows and mid_col in tack_cols):
+                if (end_row in empty_rows and end_col in empty_cols):
                     # Append possible moves appropriately
-                    start_pos, end_pos = grid_to_num(my_row, my_col), grid_to_num(jump_row, jump_col)
-                    possible_moves.append(move_encoder(start_pos, end_pos))
+                    start_pos = grid_to_num(my_row, my_col)
+                    mid_pos = grid_to_num(mid_row, mid_col)
+                    end_pos = grid_to_num(end_row, end_col)
+                    
+                    possible_moves.append(move_encoder(start_pos, mid_pos, end_pos))
 
     # Step 3: Return all possible moves
     log_and_print(f"possible_moves: {possible_moves}")
@@ -177,14 +182,14 @@ def possible_moves(board):
 '''Update the board with the move'''
 def make_move(board, encoded_move):
     # Step 1: Split encoded move into parts
-    start_str, end_str = encoded_move.split(move_separator)
-    start_num, end_num = int(start_str), int(end_str)
+    start_str, mid_str, end_str = encoded_move.split(move_separator)
+    start_num, mid_num, end_num = int(start_str), int(mid_str), int(end_str)
     start_row, start_col = num_to_grid(start_num)
+    mid_row, mid_col = num_to_grid(mid_num)
     end_row, end_col = num_to_grid(end_num)
     # Step 2: Update the board accordingly
     board[start_row] = reassign_space(original=board[start_row], index=start_col, target=empty)
-    # TODO Make jumped tack an emtpy spot (how to do this, must preserve information, recalc is inefficient)
-    log_and_print("Note TODO: change jumped tack to empty slot")
+    board[mid_row] = reassign_space(original=board[mid_row], index=mid_col, target=empty)
     board[end_row] = reassign_space(original=board[end_row], index=end_col, target=tack)
 
     # Step 3: Return the updated board
