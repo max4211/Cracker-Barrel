@@ -11,6 +11,37 @@ import logging
 import random
 import sys
 
+class TailRecurseException:
+    # From http://code.activestate.com/recipes/474088/
+  def __init__(self, args, kwargs):
+    self.args = args
+    self.kwargs = kwargs
+
+def tail_call_optimized(g):
+  """
+  This function decorates a function with tail call
+  optimization. It does this by throwing an exception
+  if it is it's own grandparent, and catching such
+  exceptions to fake the tail call optimization.
+  
+  This function fails if the decorated
+  function recurses in a non-tail context.
+  """
+  def func(*args, **kwargs):
+    f = sys._getframe()
+    if f.f_back and f.f_back.f_back \
+        and f.f_back.f_back.f_code == f.f_code:
+      raise TailRecurseException(args, kwargs)
+    else:
+      while 1:
+        try:
+          return g(*args, **kwargs)
+        except TailRecurseException, e:
+          args = e.args
+          kwargs = e.kwargs
+  func.__doc__ = g.__doc__
+  return func
+
 log_name = "gameTest.log"
 # Clear logger each time
 if os.path.isfile(log_name):
@@ -206,6 +237,7 @@ def make_move(board, encoded_move):
     return board
 
 '''Recursively play the game - continue playing until you win (once)'''
+# @tail_call_optimized
 def recursive_play(board, moves_list, move_history):
     # Check how many moves are left
     tacks_left = len(char_locations(board, character=tack, grid=True))
@@ -229,9 +261,9 @@ def run():
     row, col = num_to_grid(1)
     board = remove_tacks(board, all_rows=[row], all_cols=[col])
     # Must get around recursion error depth, try to raise limit
-    cur_depth = sys.getrecursionlimit()
     new_depth = 2000
-    sys.setrecursionlimit(5000)
+    cur_depth = sys.getrecursionlimit()
+    sys.setrecursionlimit(new_depth)
     logging.debug(f"recursion limit raised from {cur_depth} to {new_depth}")
     winning_moves = recursive_play(board, possible_moves(board), "")
     log_and_print(f"FIRST WINNING SEQUENCE: \n{winning_moves}")

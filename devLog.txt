@@ -6,7 +6,9 @@ Cracker Barrel Development Log
 
 Ran into stack overflow limit for python, attempting to raise limit or try tail call optimization techniques
 
-Raising recursion limit failes (stack overflow memory error reached somewhere between 5000 and 10000) - lets try tail code optimizaiton
+Raising recursion limit failes (stack overflow memory error reached somewhere between 5000 and 6000)- lets try tail code optimizaiton
+
+Attempting tail code optimization, need to debug try catch statements (pylint syntax errors thrown)
 
 https://stackoverflow.com/questions/3323001/what-is-the-maximum-recursion-depth-in-python-and-how-to-increase-it
 http://code.activestate.com/recipes/474088/
