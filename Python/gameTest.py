@@ -94,7 +94,7 @@ def grid_to_num(row, col):
         for i in range(row + 1):
             index += i
         num = index + col + 1
-        log_and_print(f"Converted coordinate ({row},{col}) to {num}")
+        # log_and_print(f"Converted coordinate ({row},{col}) to {num}")
         return num
 
 '''Convert a numeric value to row and column values'''
@@ -172,8 +172,11 @@ def possible_moves(board):
                     start_pos = grid_to_num(my_row, my_col)
                     mid_pos = grid_to_num(mid_row, mid_col)
                     end_pos = grid_to_num(end_row, end_col)
-                    
-                    possible_moves.append(move_encoder(start_pos, mid_pos, end_pos))
+
+                    # NOTE - Verify logic here, sometimes final position is 'None'
+                    if (not (end_pos == None)):
+                        encoded_move = move_encoder(start_pos, mid_pos, end_pos)
+                        possible_moves.append(encoded_move)
 
     # Step 3: Return all possible moves
     log_and_print(f"possible_moves: {possible_moves}")
@@ -182,6 +185,7 @@ def possible_moves(board):
 '''Update the board with the move'''
 def make_move(board, encoded_move):
     # Step 1: Split encoded move into parts
+    log_and_print(f"Splitting encoded move: {encoded_move}")
     start_str, mid_str, end_str = encoded_move.split(move_separator)
     start_num, mid_num, end_num = int(start_str), int(mid_str), int(end_str)
     start_row, start_col = num_to_grid(start_num)
@@ -201,7 +205,7 @@ def run():
     board = remove_tacks(board, all_rows=[0, 4], all_cols=[0, 1])
 
     all_moves = possible_moves(board)
-    random_move = all_moves[random.randint(0, len(all_moves))]
+    random_move = all_moves[random.randint(0, len(all_moves)-1)]
 
     new_board = make_move(board, random_move)
 
