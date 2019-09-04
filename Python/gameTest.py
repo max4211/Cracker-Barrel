@@ -9,12 +9,13 @@ Goal: Test out various game implementations
 import os
 import logging
 import random
+import sys
 
 log_name = "gameTest.log"
 # Clear logger each time
 if os.path.isfile(log_name):
     os.remove(log_name)
-logging.basicConfig(filename=log_name, level=logging.INFO)
+logging.basicConfig(filename=log_name, level=logging.DEBUG)
 
 def log_and_print(message):
     logging.info(message)
@@ -25,6 +26,8 @@ tack = "x"
 empty = "o"
 off_board = "-"
 move_separator = " to "
+round_separator = ","
+win_count = 0
 
 # Gloval variables that govern game rules
 all_row_delta = [1, 0, -1, 0, 1, -1] 
@@ -38,7 +41,7 @@ def create_board(rows):
     board = []
     for num in range(rows):
         board.append(next_row(num, rows))
-    log_and_print(board)
+    # logging.info(board)
     return board
 
 '''Return a row that has been appropriately formatted'''
@@ -54,10 +57,10 @@ def next_row(num, rows):
 '''Verify that tack selected is inbounds on the board'''
 def inbounds(board, row, col):
     if row >= 0 and row < len(board) and col >= 0 and col < len(board):
-        log_and_print("Tack is inside board range, returning True")
+        # logging.info("Tack is inside board range, returning True")
         return(True)
     else:
-        log_and_print("Tack is outside board range, returning False")
+        # logging.info("Tack is outside board range, returning False")
         return(False)
 
 '''Input an original row, output a new row changing the index value to target'''
@@ -75,9 +78,10 @@ def remove_tacks(board, all_rows, all_cols):
             my_tack = my_row[col]
             if (my_tack == tack):
                 board[row] = reassign_space(board[row], col, empty)
-                log_and_print(f"Tack successfully removed, new board is \n {board}")
+                # logging.info(f"Tack successfully removed, new board is \n {board}")
             else:
-                log_and_print("Tack desired to remove is not a tack")
+                pass
+                # logging.info("Tack desired to remove is not a tack")
     return board
 
 '''Encode moves according to a specific sequence, use these to populate list in possible moves'''
@@ -88,13 +92,14 @@ def move_encoder(start_pos, mid_pos, end_pos):
 '''Convert a grid value to a numeric value (e.g. 0,0 is 1)'''
 def grid_to_num(row, col):
     if (col > row):
-        log_and_print("Nice try, column can't be greater than row")
+        pass
+        # logging.info("Nice try, column can't be greater than row")
     elif (col <= row):
         index = 0
         for i in range(row + 1):
             index += i
         num = index + col + 1
-        # log_and_print(f"Converted coordinate ({row},{col}) to {num}")
+        # logging.info(f"Converted coordinate ({row},{col}) to {num}")
         return num
 
 '''Convert a numeric value to row and column values'''
@@ -104,7 +109,7 @@ def num_to_grid(num):
 
     # Check edge cases first
     if (num <= 0):
-        log_and_print(f"Invalid grid number ({num}), try again")
+        # logging.info(f"Invalid grid number ({num}), try again")
         return
 
     row, col, index = 0, 0, 1
@@ -118,7 +123,7 @@ def num_to_grid(num):
             row += 1
         index += 1
 
-    log_and_print(f"Converted num: {num} to grid: ({row}, {col})")
+    # logging.info(f"Converted num: {num} to grid: ({row}, {col})")
     return (row, col)
 
 '''From a given board, return numeric locations of all character values'''
@@ -138,11 +143,11 @@ def char_locations(board, character, grid):
             col += 1
         row += 1
     if (grid == True):
-        log_and_print(f"char_list for char {character}: {char_list}")
+        # logging.info(f"char_list for char {character}: {char_list}")
         return char_list
     else:
-        log_and_print(f"row_list for char {character}: {row_list}")
-        log_and_print(f"col_list for char {character}: {col_list}")
+        # logging.info(f"row_list for char {character}: {row_list}")
+        # logging.info(f"col_list for char {character}: {col_list}")
         return (row_list, col_list)
 
 '''Return a list of possible_moves according to a given board'''
@@ -179,13 +184,13 @@ def possible_moves(board):
                         possible_moves.append(encoded_move)
 
     # Step 3: Return all possible moves
-    log_and_print(f"possible_moves: {possible_moves}")
+    # logging.info(f"possible_moves: {possible_moves}")
     return possible_moves
 
 '''Update the board with the move'''
 def make_move(board, encoded_move):
     # Step 1: Split encoded move into parts
-    log_and_print(f"Splitting encoded move: {encoded_move}")
+    # logging.info(f"Splitting encoded move: {encoded_move}")
     start_str, mid_str, end_str = encoded_move.split(move_separator)
     start_num, mid_num, end_num = int(start_str), int(mid_str), int(end_str)
     start_row, start_col = num_to_grid(start_num)
@@ -195,19 +200,41 @@ def make_move(board, encoded_move):
     board[start_row] = reassign_space(original=board[start_row], index=start_col, target=empty)
     board[mid_row] = reassign_space(original=board[mid_row], index=mid_col, target=empty)
     board[end_row] = reassign_space(original=board[end_row], index=end_col, target=tack)
-
+    
     # Step 3: Return the updated board
-    log_and_print(f"Move: ({encoded_move}) was successfully implemented\nNew Board:\n{board}")
+    # log_and_print("We made it, time to return board, I hate indentation errors")
     return board
+
+'''Recursively play the game - continue playing until you win (once)'''
+def recursive_play(board, moves_list, move_history):
+    # Check how many moves are left
+    tacks_left = len(char_locations(board, character=tack, grid=True))
+    if (tacks_left == 1):
+        # TODO - Remove final move separator
+        return move_history
+    elif (len(moves_list) == 0):
+        # NOTE - No more moves, you lose
+        pass
+    elif (len(moves_list) > 0):
+        # Scan through all moves and make them recursively
+        for move in moves_list:
+            # logging.info(f"move: {move}")
+            next_board = make_move(board, move)
+            next_moves = possible_moves(next_board)
+            next_history = move_history + round_separator + move
+            recursive_play(board=next_board, moves_list=next_moves, move_history=next_history)
 
 def run():
     board = create_board(rows=5)
-    board = remove_tacks(board, all_rows=[0, 4], all_cols=[0, 1])
-
-    all_moves = possible_moves(board)
-    random_move = all_moves[random.randint(0, len(all_moves)-1)]
-
-    new_board = make_move(board, random_move)
+    row, col = num_to_grid(1)
+    board = remove_tacks(board, all_rows=[row], all_cols=[col])
+    # Must get around recursion error depth, try to raise limit
+    cur_depth = sys.getrecursionlimit()
+    new_depth = 2000
+    sys.setrecursionlimit(10000)
+    logging.debug(f"recursion limit raised from {cur_depth} to {new_depth}")
+    winning_moves = recursive_play(board, possible_moves(board), "")
+    log_and_print(f"FIRST WINNING SEQUENCE: \n{winning_moves}")
 
 # Testing functions as they are written
 run()

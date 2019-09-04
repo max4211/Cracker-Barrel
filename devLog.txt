@@ -1,0 +1,13 @@
+Cracker Barrel Development Log
+
+9/3 Ported Java code over to python, got basic game structure operational
+
+9/4 Explored optimization techniques by hand. Decided to create naive version to benchmark aagainst incremental optimizations.
+
+Ran into stack overflow limit for python, attempting to raise limit or try tail call optimization techniques
+
+Raising recursion limit failes (stack overflow memory error reached somewhere between 5000 and 10000) - lets try tail code optimizaiton
+
+https://stackoverflow.com/questions/3323001/what-is-the-maximum-recursion-depth-in-python-and-how-to-increase-it
+http://code.activestate.com/recipes/474088/
+
