@@ -12,6 +12,7 @@ This will be accomplished through gameplay backend construction and optimization
 2. Optimize game algorithms (big oh baby)
     1. Use benchmark and step by step optimizationa to gauge efficiency increases
 3. Implement Q-Learning (or other alogirthms) to learn best strategy to beat game
+    1. Clean up Python code (objects and classes)
 4. Create a GUI to play the game for a user
     1. Make it pretty
     2. Integrate learned rules to aid as "hints"
