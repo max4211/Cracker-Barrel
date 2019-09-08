@@ -1,41 +1,21 @@
-INFO:root:recursion limit raised from 1000 to 5000
-INFO:root:board: ['o--', 'xx-', 'xxx']
-INFO:root:tacks_left: 5
-INFO:root:moves_list: ['4 to 2 to 1', '6 to 3 to 1']
-INFO:root:move: 4 to 2 to 1
-INFO:root:next_board: ['x--', 'ox-', 'oxx']
-INFO:root:next_moves: ['1 to 2 to 4', '6 to 5 to 4']
-INFO:root:next_history: ,4 to 2 to 1
-INFO:root:id: 0
-INFO:root:board: ['x--', 'ox-', 'oxx']
-INFO:root:tacks_left: 4
-INFO:root:moves_list: ['1 to 2 to 4', '6 to 5 to 4']
-INFO:root:move: 1 to 2 to 4
-INFO:root:next_board: ['o--', 'ox-', 'xxx']
-INFO:root:next_moves: ['4 to 2 to 1', '6 to 3 to 1']
-INFO:root:next_history: ,4 to 2 to 1,1 to 2 to 4
-INFO:root:id: 1
+INFO:root:tack_list: [3, 4, 5, 6]
+INFO:root:empty_list: [1, 2]
+INFO:root:Searching for legal moves around tack: 3
+INFO:root:Tack in middle position: 5
+INFO:root:Tack in middle position: 6
+INFO:root:Searching for legal moves around tack: 4
+INFO:root:Tack in middle position: 5
+INFO:root:Tack in middle position: 3
+INFO:root:Empty in end position: 2
+INFO:root:Found a legal move!!
+INFO:root:Searching for legal moves around tack: 5
+INFO:root:Tack in middle position: 6
+INFO:root:Tack in middle position: 3
+INFO:root:Tack in middle position: 4
+INFO:root:Searching for legal moves around tack: 6
+INFO:root:Tack in middle position: 5
+INFO:root:Tack in middle position: 3
+INFO:root:Empty in end position: 1
+INFO:root:Found a legal move!!
 INFO:root:board: ['o--', 'ox-', 'xxx']
-INFO:root:tacks_left: 4
-INFO:root:moves_list: ['4 to 2 to 1', '6 to 3 to 1']
-INFO:root:move: 4 to 2 to 1
-INFO:root:next_board: ['x--', 'ox-', 'oxx']
-INFO:root:next_moves: ['1 to 2 to 4', '6 to 5 to 4']
-INFO:root:next_history: ,4 to 2 to 1,1 to 2 to 4,4 to 2 to 1
-INFO:root:id: 2
-INFO:root:board: ['x--', 'ox-', 'oxx']
-INFO:root:tacks_left: 4
-INFO:root:moves_list: ['1 to 2 to 4', '6 to 5 to 4']
-INFO:root:move: 1 to 2 to 4
-INFO:root:next_board: ['o--', 'ox-', 'xxx']
-INFO:root:next_moves: ['4 to 2 to 1', '6 to 3 to 1']
-INFO:root:next_history: ,4 to 2 to 1,1 to 2 to 4,4 to 2 to 1,1 to 2 to 4
-INFO:root:id: 3
-INFO:root:board: ['o--', 'ox-', 'xxx']
-INFO:root:tacks_left: 4
-INFO:root:moves_list: ['4 to 2 to 1', '6 to 3 to 1']
-INFO:root:move: 4 to 2 to 1
-INFO:root:next_board: ['x--', 'ox-', 'oxx']
-INFO:root:next_moves: ['1 to 2 to 4', '6 to 5 to 4']
-INFO:root:next_history: ,4 to 2 to 1,1 to 2 to 4,4 to 2 to 1,1 to 2 to 4,4 to 2 to 1
-INFO:root:id: 4
+INFO:root:all_moves: ['4 to 3 to 2', '6 to 3 to 1']

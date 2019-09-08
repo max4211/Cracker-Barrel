@@ -114,7 +114,7 @@ def num_to_grid(num):
 
     row, col, index = 0, 0, 1
     while (index < num):
-        # TODO - Finish this method
+        # TODO:Finish this method
         # Update row and col appropriately
         if (col < row):
             col += 1
@@ -154,34 +154,40 @@ def char_locations(board, character, grid):
 def possible_moves(board):
     # NOTE - Idea, make possible moves a dictionary with encodings and row, col values
     # NOTE - Lots of parallelism seems inefficient
-    # TODO - Clear this up, num to grid converter will solve short term problems
+    # TODO:Clear this up, num to grid converter will solve short term problems
     possible_moves = []
 
     # Step 1: Get a list of where all tacks and empty spots are
-    # tack_list = char_locations(board, character=tack, grid=True)
+    tack_list = char_locations(board, character=tack, grid=True)
     tack_rows, tack_cols = char_locations(board, character=tack, grid=False)
-    # empty_list = char_locations(board, character=empty, grid=True)
-    empty_rows, empty_cols = char_locations(board, character=empty, grid=False)
-    
+    empty_list = char_locations(board, character=empty, grid=True)
+    # empty_rows, empty_cols = char_locations(board, character=empty, grid=False)
+
+    log_and_print(f"tack_list: {tack_list}")
+    log_and_print(f"empty_list: {empty_list}")
+
     # Step 2a: Take each tack and "try" to move in all directions (using global rules above)
-    for i in range(len(tack_rows)):
+    # TODO:Update to tack search map (only 2-6 moves from each spot, never all 8)
+    for i in range(len(tack_list)):
         my_row, my_col = tack_rows[i], tack_cols[i]
+        log_and_print(f"Searching for legal moves around tack: {grid_to_num(my_row, my_col)}")
         for k in range(len(all_row_delta)):
             row_delta, col_delta = all_row_delta[k], all_col_delta[k]
             mid_row, mid_col = my_row + 1 * row_delta, my_col + 1 * col_delta
             end_row, end_col = my_row + 2 * row_delta, my_col + 2 * col_delta
             # Step 2b: Verify that neighbor is tack and, jump is empty
-            if (mid_row in tack_rows and mid_col in tack_cols):
-                if (end_row in empty_rows and end_col in empty_cols):
+            if (grid_to_num(mid_row, mid_col) in tack_list):
+                log_and_print(f"Tack in middle position: {grid_to_num(mid_row, mid_col)}")
+                if (grid_to_num(end_row, end_col) in empty_list):
+                    log_and_print(f"Empty in end position: {grid_to_num(end_row, end_col)}")
                     # Append possible moves appropriately
                     start_pos = grid_to_num(my_row, my_col)
                     mid_pos = grid_to_num(mid_row, mid_col)
                     end_pos = grid_to_num(end_row, end_col)
 
-                    # NOTE - Verify logic here, sometimes final position is 'None'
-                    if (not (end_pos == None)):
-                        encoded_move = move_encoder(start_pos, mid_pos, end_pos)
-                        possible_moves.append(encoded_move)
+                    log_and_print(f"Found a legal move!!")
+                    encoded_move = move_encoder(start_pos, mid_pos, end_pos)
+                    possible_moves.append(encoded_move)
 
     # Step 3: Return all possible moves
     # logging.info(f"possible_moves: {possible_moves}")
@@ -213,7 +219,7 @@ def recursive_play(board, moves_list, move_history, id):
     log_and_print(f"tacks_left: {tacks_left}")
     log_and_print(f"moves_list: {moves_list}")
     if (tacks_left == 1):
-        # TODO - Remove final move separator
+        # TODO:Remove final move separator
         return move_history
     elif (len(moves_list) == 0):
         # NOTE - No more moves, you lose
@@ -234,21 +240,28 @@ def recursive_play(board, moves_list, move_history, id):
         log_and_print(f"finished scanning all moves for board: {board}")
 
 def run():
-    # TODO - Correct recursion, 3 rows was not successful but should be
+    # TODO:Correct recursion, 3 rows was not successful but should be
     # NOTE - Verify solution exists in Java implementation
     board = create_board(rows=3)
+
+    # Debugging possible moves
+    board = remove_tacks(board, all_rows=[0, 1], all_cols=[0, 0])
+    all_moves = possible_moves(board)
+    log_and_print(f"board: {board}")
+    log_and_print(f"all_moves: {all_moves}")
+
+    # Must get around recursion error depth, attempting to raise limit
+    # NOTE - Possible recursion limit is okay, possible moves in recursion seems to be broken
+    '''
     row, col = num_to_grid(1)
     board = remove_tacks(board, all_rows=[row], all_cols=[col])
-    # Must get around recursion error depth, try to raise limit
-    # NOTE - Possible recursion limit is okay, possible moves in recursion seems to be broken
     cur_depth = sys.getrecursionlimit()
     new_depth = 5000
     sys.setrecursionlimit(new_depth)
     log_and_print(f"recursion limit raised from {cur_depth} to {new_depth}")
-    
-    
-    # winning_moves = recursive_play(board, possible_moves(board), "", id=0)
-    # log_and_print(f"FIRST WINNING SEQUENCE: \n{winning_moves}")
+    winning_moves = recursive_play(board, possible_moves(board), "", id=0)
+    log_and_print(f"FIRST WINNING SEQUENCE: \n{winning_moves}")
+    '''
 
 # Testing functions as they are written
 run()
