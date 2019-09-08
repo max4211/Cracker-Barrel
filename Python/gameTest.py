@@ -218,11 +218,13 @@ def recursive_play(board, moves_list, move_history, id, first_trial):
     tacks_left = len(char_locations(board, character=tack, grid=True))
     log_and_print(f"board: {board}")
     log_and_print(f"tacks_left: {tacks_left}")
+    log_and_print(f"moves_left: {len(moves_list)}")
     log_and_print(f"moves_list: {moves_list}")
 
     if (len(moves_list) == 0):
         if (tacks_left == 1):
             # TODO: Remove final move separator
+            log_and_print(f"ONE TACK LEFT :)!!!!")
             log_and_print(f"move_history to retrun for win: {move_history}")
             return move_history
         pass
@@ -230,19 +232,28 @@ def recursive_play(board, moves_list, move_history, id, first_trial):
         # Scan through all moves and make them recursively
         for move in moves_list:
             if first_trial:
+                log_and_print(f"increasing id from {id} to {id+1}")
                 id += 1
+            else:
+                log_and_print(f"increasing id from {id} to {id+1}")
+                id += 1
+                # id = id
             next_board = make_move(board, move)
             next_moves = possible_moves(next_board)
-            next_history = move_history + round_separator + move
+            if first_trial:
+                next_history = "START: " + move
+            else:
+                next_history = move_history + round_separator + move
 
             log_and_print(f"move: {move}")
-            # log_and_print(f"next_board: {next_board}")
+            log_and_print(f"next_board: {next_board}")
             # log_and_print(f"next_moves: {next_moves}")
             log_and_print(f"next_history: {next_history}")
             log_and_print(f"id: {id}")
             # x = input("pausing for recursive delay, input to proceed: ")
             # NOTE: Would this be cleaner with queues?
             recursive_play(board=next_board, moves_list=next_moves, move_history=next_history, id=id, first_trial=False)
+        
         log_and_print(f"finished scanning all moves for board: {board}")
 
 def run():
