@@ -15,3 +15,5 @@ http://code.activestate.com/recipes/474088/
 
 Next steps - explore tail code optimization (fix try catch), but ensure that recursion works with a smaller board (3 and 4 rows). Also dig deeper into what is actually overflowing, what is python stack, etc.
 
+9/8 Continuing to debug recursion error by making smaller board. Looks like the recursion is not working as expected (moves are not always correct too and they are also not made).
+
