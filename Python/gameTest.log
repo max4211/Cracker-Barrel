@@ -3,106 +3,83 @@ INFO:root:board: ['o---', 'xx--', 'xxx-', 'xxxx']
 INFO:root:tacks_left: 9
 INFO:root:moves_list: ['4 to 2 to 1', '6 to 3 to 1']
 INFO:root:move: 4 to 2 to 1
-INFO:root:next_board: ['x---', 'ox--', 'oxx-', 'xxxx']
-INFO:root:next_moves: ['6 to 5 to 4', '9 to 5 to 2']
-INFO:root:next_history: ,4 to 2 to 1
-INFO:root:id: 0
+INFO:root:next_history:  , 4 to 2 to 1
+INFO:root:id: 1
 INFO:root:board: ['x---', 'ox--', 'oxx-', 'xxxx']
 INFO:root:tacks_left: 8
 INFO:root:moves_list: ['6 to 5 to 4', '9 to 5 to 2']
 INFO:root:move: 6 to 5 to 4
-INFO:root:next_board: ['x---', 'ox--', 'xoo-', 'xxxx']
-INFO:root:next_moves: ['1 to 3 to 6', '7 to 4 to 2']
-INFO:root:next_history: ,4 to 2 to 1,6 to 5 to 4
+INFO:root:next_history:  , 4 to 2 to 1 , 6 to 5 to 4
 INFO:root:id: 1
 INFO:root:board: ['x---', 'ox--', 'xoo-', 'xxxx']
 INFO:root:tacks_left: 7
 INFO:root:moves_list: ['1 to 3 to 6', '7 to 4 to 2']
 INFO:root:move: 1 to 3 to 6
-INFO:root:next_board: ['o---', 'oo--', 'xox-', 'xxxx']
-INFO:root:next_moves: ['7 to 4 to 2', '10 to 6 to 3']
-INFO:root:next_history: ,4 to 2 to 1,6 to 5 to 4,1 to 3 to 6
-INFO:root:id: 2
+INFO:root:next_history:  , 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6
+INFO:root:id: 1
 INFO:root:board: ['o---', 'oo--', 'xox-', 'xxxx']
 INFO:root:tacks_left: 6
 INFO:root:moves_list: ['7 to 4 to 2', '10 to 6 to 3']
 INFO:root:move: 7 to 4 to 2
-INFO:root:next_board: ['o---', 'xo--', 'oox-', 'oxxx']
-INFO:root:next_moves: ['9 to 8 to 7', '10 to 6 to 3']
-INFO:root:next_history: ,4 to 2 to 1,6 to 5 to 4,1 to 3 to 6,7 to 4 to 2
-INFO:root:id: 3
+INFO:root:next_history:  , 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6 , 7 to 4 to 2
+INFO:root:id: 1
 INFO:root:board: ['o---', 'xo--', 'oox-', 'oxxx']
 INFO:root:tacks_left: 5
 INFO:root:moves_list: ['9 to 8 to 7', '10 to 6 to 3']
 INFO:root:move: 9 to 8 to 7
-INFO:root:next_board: ['o---', 'xo--', 'oox-', 'xoox']
-INFO:root:next_moves: ['10 to 6 to 3']
-INFO:root:next_history: ,4 to 2 to 1,6 to 5 to 4,1 to 3 to 6,7 to 4 to 2,9 to 8 to 7
-INFO:root:id: 4
+INFO:root:next_history:  , 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6 , 7 to 4 to 2 , 9 to 8 to 7
+INFO:root:id: 1
 INFO:root:board: ['o---', 'xo--', 'oox-', 'xoox']
 INFO:root:tacks_left: 4
 INFO:root:moves_list: ['10 to 6 to 3']
 INFO:root:move: 10 to 6 to 3
-INFO:root:next_board: ['o---', 'xx--', 'ooo-', 'xooo']
-INFO:root:next_moves: []
-INFO:root:next_history: ,4 to 2 to 1,6 to 5 to 4,1 to 3 to 6,7 to 4 to 2,9 to 8 to 7,10 to 6 to 3
-INFO:root:id: 5
+INFO:root:next_history:  , 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6 , 7 to 4 to 2 , 9 to 8 to 7 , 10 to 6 to 3
+INFO:root:id: 1
 INFO:root:board: ['o---', 'xx--', 'ooo-', 'xooo']
 INFO:root:tacks_left: 3
 INFO:root:moves_list: []
 INFO:root:finished scanning all moves for board: ['o---', 'xx--', 'ooo-', 'xooo']
 INFO:root:move: 10 to 6 to 3
-INFO:root:next_board: ['o---', 'xx--', 'ooo-', 'xooo']
-INFO:root:next_moves: []
-INFO:root:next_history: ,4 to 2 to 1,6 to 5 to 4,1 to 3 to 6,7 to 4 to 2,10 to 6 to 3
-INFO:root:id: 4
+INFO:root:next_history:  , 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6 , 7 to 4 to 2 , 10 to 6 to 3
+INFO:root:id: 1
 INFO:root:board: ['o---', 'xx--', 'ooo-', 'xooo']
 INFO:root:tacks_left: 3
 INFO:root:moves_list: []
 INFO:root:finished scanning all moves for board: ['o---', 'xx--', 'ooo-', 'xooo']
 INFO:root:move: 10 to 6 to 3
-INFO:root:next_board: ['o---', 'xx--', 'ooo-', 'xooo']
-INFO:root:next_moves: []
-INFO:root:next_history: ,4 to 2 to 1,6 to 5 to 4,1 to 3 to 6,10 to 6 to 3
-INFO:root:id: 3
+INFO:root:next_history:  , 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6 , 10 to 6 to 3
+INFO:root:id: 1
 INFO:root:board: ['o---', 'xx--', 'ooo-', 'xooo']
 INFO:root:tacks_left: 3
 INFO:root:moves_list: []
 INFO:root:finished scanning all moves for board: ['o---', 'xx--', 'ooo-', 'xooo']
 INFO:root:move: 7 to 4 to 2
-INFO:root:next_board: ['o---', 'xx--', 'ooo-', 'oooo']
-INFO:root:next_moves: []
-INFO:root:next_history: ,4 to 2 to 1,6 to 5 to 4,7 to 4 to 2
-INFO:root:id: 2
+INFO:root:next_history:  , 4 to 2 to 1 , 6 to 5 to 4 , 7 to 4 to 2
+INFO:root:id: 1
 INFO:root:board: ['o---', 'xx--', 'ooo-', 'oooo']
 INFO:root:tacks_left: 2
 INFO:root:moves_list: []
 INFO:root:finished scanning all moves for board: ['o---', 'xx--', 'ooo-', 'oooo']
 INFO:root:move: 9 to 5 to 2
-INFO:root:next_board: ['o---', 'xx--', 'ooo-', 'oooo']
-INFO:root:next_moves: []
-INFO:root:next_history: ,4 to 2 to 1,9 to 5 to 2
+INFO:root:next_history:  , 4 to 2 to 1 , 9 to 5 to 2
 INFO:root:id: 1
 INFO:root:board: ['o---', 'xx--', 'ooo-', 'oooo']
 INFO:root:tacks_left: 2
 INFO:root:moves_list: []
 INFO:root:finished scanning all moves for board: ['o---', 'xx--', 'ooo-', 'oooo']
 INFO:root:move: 6 to 3 to 1
-INFO:root:next_board: ['x---', 'xo--', 'ooo-', 'oooo']
-INFO:root:next_moves: ['1 to 2 to 4']
-INFO:root:next_history: ,6 to 3 to 1
-INFO:root:id: 0
+INFO:root:next_history:  , 6 to 3 to 1
+INFO:root:id: 2
 INFO:root:board: ['x---', 'xo--', 'ooo-', 'oooo']
 INFO:root:tacks_left: 2
 INFO:root:moves_list: ['1 to 2 to 4']
 INFO:root:move: 1 to 2 to 4
-INFO:root:next_board: ['o---', 'oo--', 'xoo-', 'oooo']
-INFO:root:next_moves: []
-INFO:root:next_history: ,6 to 3 to 1,1 to 2 to 4
-INFO:root:id: 1
+INFO:root:next_history:  , 6 to 3 to 1 , 1 to 2 to 4
+INFO:root:id: 2
 INFO:root:board: ['o---', 'oo--', 'xoo-', 'oooo']
 INFO:root:tacks_left: 1
 INFO:root:moves_list: []
+INFO:root:move_history to retrun for win:  , 6 to 3 to 1 , 1 to 2 to 4
 INFO:root:finished scanning all moves for board: ['o---', 'oo--', 'xoo-', 'oooo']
 INFO:root:finished scanning all moves for board: ['o---', 'oo--', 'xoo-', 'oooo']
 INFO:root:FIRST WINNING SEQUENCE: 
