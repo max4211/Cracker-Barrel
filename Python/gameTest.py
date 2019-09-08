@@ -206,9 +206,12 @@ def make_move(board, encoded_move):
     return board
 
 '''Recursively play the game - continue playing until you win (once)'''
-def recursive_play(board, moves_list, move_history):
+def recursive_play(board, moves_list, move_history, id):
     # Check how many moves are left
     tacks_left = len(char_locations(board, character=tack, grid=True))
+    log_and_print(f"board: {board}")
+    log_and_print(f"tacks_left: {tacks_left}")
+    log_and_print(f"moves_list: {moves_list}")
     if (tacks_left == 1):
         # TODO - Remove final move separator
         return move_history
@@ -218,23 +221,34 @@ def recursive_play(board, moves_list, move_history):
     elif (len(moves_list) > 0):
         # Scan through all moves and make them recursively
         for move in moves_list:
-            # logging.info(f"move: {move}")
             next_board = make_move(board, move)
             next_moves = possible_moves(next_board)
             next_history = move_history + round_separator + move
-            recursive_play(board=next_board, moves_list=next_moves, move_history=next_history)
+            log_and_print(f"move: {move}")
+            log_and_print(f"next_board: {next_board}")
+            log_and_print(f"next_moves: {next_moves}")
+            log_and_print(f"next_history: {next_history}")
+            log_and_print(f"id: {id}")
+            x = input("pausing for recursive delay, input to proceed: ")
+            recursive_play(board=next_board, moves_list=next_moves, move_history=next_history, id=id+1)
+        log_and_print(f"finished scanning all moves for board: {board}")
 
 def run():
-    board = create_board(rows=5)
+    # TODO - Correct recursion, 3 rows was not successful but should be
+    # NOTE - Verify solution exists in Java implementation
+    board = create_board(rows=3)
     row, col = num_to_grid(1)
     board = remove_tacks(board, all_rows=[row], all_cols=[col])
     # Must get around recursion error depth, try to raise limit
+    # NOTE - Possible recursion limit is okay, possible moves in recursion seems to be broken
     cur_depth = sys.getrecursionlimit()
-    new_depth = 2000
-    sys.setrecursionlimit(5000)
-    logging.debug(f"recursion limit raised from {cur_depth} to {new_depth}")
-    winning_moves = recursive_play(board, possible_moves(board), "")
-    log_and_print(f"FIRST WINNING SEQUENCE: \n{winning_moves}")
+    new_depth = 5000
+    sys.setrecursionlimit(new_depth)
+    log_and_print(f"recursion limit raised from {cur_depth} to {new_depth}")
+    
+    
+    # winning_moves = recursive_play(board, possible_moves(board), "", id=0)
+    # log_and_print(f"FIRST WINNING SEQUENCE: \n{winning_moves}")
 
 # Testing functions as they are written
 run()

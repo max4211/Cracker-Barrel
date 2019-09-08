@@ -1,1 +1,41 @@
-DEBUG:root:recursion limit raised from 1000 to 2000
+INFO:root:recursion limit raised from 1000 to 5000
+INFO:root:board: ['o--', 'xx-', 'xxx']
+INFO:root:tacks_left: 5
+INFO:root:moves_list: ['4 to 2 to 1', '6 to 3 to 1']
+INFO:root:move: 4 to 2 to 1
+INFO:root:next_board: ['x--', 'ox-', 'oxx']
+INFO:root:next_moves: ['1 to 2 to 4', '6 to 5 to 4']
+INFO:root:next_history: ,4 to 2 to 1
+INFO:root:id: 0
+INFO:root:board: ['x--', 'ox-', 'oxx']
+INFO:root:tacks_left: 4
+INFO:root:moves_list: ['1 to 2 to 4', '6 to 5 to 4']
+INFO:root:move: 1 to 2 to 4
+INFO:root:next_board: ['o--', 'ox-', 'xxx']
+INFO:root:next_moves: ['4 to 2 to 1', '6 to 3 to 1']
+INFO:root:next_history: ,4 to 2 to 1,1 to 2 to 4
+INFO:root:id: 1
+INFO:root:board: ['o--', 'ox-', 'xxx']
+INFO:root:tacks_left: 4
+INFO:root:moves_list: ['4 to 2 to 1', '6 to 3 to 1']
+INFO:root:move: 4 to 2 to 1
+INFO:root:next_board: ['x--', 'ox-', 'oxx']
+INFO:root:next_moves: ['1 to 2 to 4', '6 to 5 to 4']
+INFO:root:next_history: ,4 to 2 to 1,1 to 2 to 4,4 to 2 to 1
+INFO:root:id: 2
+INFO:root:board: ['x--', 'ox-', 'oxx']
+INFO:root:tacks_left: 4
+INFO:root:moves_list: ['1 to 2 to 4', '6 to 5 to 4']
+INFO:root:move: 1 to 2 to 4
+INFO:root:next_board: ['o--', 'ox-', 'xxx']
+INFO:root:next_moves: ['4 to 2 to 1', '6 to 3 to 1']
+INFO:root:next_history: ,4 to 2 to 1,1 to 2 to 4,4 to 2 to 1,1 to 2 to 4
+INFO:root:id: 3
+INFO:root:board: ['o--', 'ox-', 'xxx']
+INFO:root:tacks_left: 4
+INFO:root:moves_list: ['4 to 2 to 1', '6 to 3 to 1']
+INFO:root:move: 4 to 2 to 1
+INFO:root:next_board: ['x--', 'ox-', 'oxx']
+INFO:root:next_moves: ['1 to 2 to 4', '6 to 5 to 4']
+INFO:root:next_history: ,4 to 2 to 1,1 to 2 to 4,4 to 2 to 1,1 to 2 to 4,4 to 2 to 1
+INFO:root:id: 4

@@ -13,3 +13,5 @@ Attempting tail code optimization, need to debug try catch statements (pylint sy
 https://stackoverflow.com/questions/3323001/what-is-the-maximum-recursion-depth-in-python-and-how-to-increase-it
 http://code.activestate.com/recipes/474088/
 
+Next steps - explore tail code optimization (fix try catch), but ensure that recursion works with a smaller board (3 and 4 rows). Also dig deeper into what is actually overflowing, what is python stack, etc.
+
