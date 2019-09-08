@@ -90,6 +90,11 @@ def remove_tacks(board, all_rows, all_cols):
 def move_encoder(start_pos, mid_pos, end_pos):
     return str(start_pos) + move_separator + str(mid_pos) + move_separator + str(end_pos)
 
+'''Print board in more column way'''
+def prettify_board(board):
+    for row in board:
+        log_and_print(row)
+
 '''Convert a grid value to a numeric value (e.g. 0,0 is 1)'''
 def grid_to_num(row, col):
     if (col < 0 or row < 0):
@@ -216,7 +221,6 @@ def make_move(board, encoded_move):
 def recursive_play(board, moves_list, move_history, id, first_trial):
     # Check how many moves are left
     tacks_left = len(char_locations(board, character=tack, grid=True))
-    log_and_print(f"board: {board}")
     log_and_print(f"tacks_left: {tacks_left}")
     log_and_print(f"moves_left: {len(moves_list)}")
     log_and_print(f"moves_list: {moves_list}")
@@ -245,8 +249,11 @@ def recursive_play(board, moves_list, move_history, id, first_trial):
             else:
                 next_history = move_history + round_separator + move
 
+            log_and_print(f"og_board:")
+            prettify_board(board)
             log_and_print(f"move: {move}")
-            log_and_print(f"next_board: {next_board}")
+            log_and_print(f"next_board:")
+            prettify_board(next_board)
             # log_and_print(f"next_moves: {next_moves}")
             log_and_print(f"next_history: {next_history}")
             log_and_print(f"id: {id}")
