@@ -36,6 +36,9 @@ all_col_delta = [0, 1, 0, -1, 1, -1]
 unique_start = [1, 2, 4, 5]
 # all_row_start = [0, 1, 2, 2]
 # all_col_start = [0, 0, 0, 1]
+
+# Recursive counter
+recurse_counter = 0
     
 '''Create a full board'''
 def create_board(rows):
@@ -202,7 +205,6 @@ def possible_moves(board):
 '''Update the board with the move'''
 def make_move(board, encoded_move):
     # Step 1: Split encoded move into parts
-    # logging.info(f"Splitting encoded move: {encoded_move}")
     start_str, mid_str, end_str = encoded_move.split(move_separator)
     start_num, mid_num, end_num = int(start_str), int(mid_str), int(end_str)
     start_row, start_col = num_to_grid(start_num)
@@ -214,11 +216,10 @@ def make_move(board, encoded_move):
     board[end_row] = reassign_space(original=board[end_row], index=end_col, target=tack)
     
     # Step 3: Return the updated board
-    # log_and_print("We made it, time to return board, I hate indentation errors")
     return board
 
 '''Recursively play the game - continue playing until you win (once)'''
-def recursive_play(board, moves_list, move_history, id, first_trial):
+def recursive_play(board, moves_list, move_history, id, first_trial, recurse_counter):
     # Check how many moves are left
     tacks_left = len(char_locations(board, character=tack, grid=True))
     log_and_print(f"tacks_left: {tacks_left}")
@@ -236,12 +237,10 @@ def recursive_play(board, moves_list, move_history, id, first_trial):
         # Scan through all moves and make them recursively
         for move in moves_list:
             if first_trial:
-                log_and_print(f"increasing id from {id} to {id+1}")
                 id += 1
             else:
-                log_and_print(f"increasing id from {id} to {id+1}")
-                id += 1
-                # id = id
+                # id += 1
+                id = id
             next_board = make_move(board, move)
             next_moves = possible_moves(next_board)
             if first_trial:
@@ -249,7 +248,7 @@ def recursive_play(board, moves_list, move_history, id, first_trial):
             else:
                 next_history = move_history + round_separator + move
 
-            log_and_print(f"og_board:")
+            # log_and_print(f"og_board:")
             prettify_board(board)
             log_and_print(f"move: {move}")
             log_and_print(f"next_board:")
@@ -257,9 +256,9 @@ def recursive_play(board, moves_list, move_history, id, first_trial):
             # log_and_print(f"next_moves: {next_moves}")
             log_and_print(f"next_history: {next_history}")
             log_and_print(f"id: {id}")
-            # x = input("pausing for recursive delay, input to proceed: ")
+            log_and_print(f"recurse_counter: {recurse_counter}")
             # NOTE: Would this be cleaner with queues?
-            recursive_play(board=next_board, moves_list=next_moves, move_history=next_history, id=id, first_trial=False)
+            recursive_play(next_board, moves_list=next_moves, move_history=next_history, id=id, first_trial=False, recurse_counter=recurse_counter+1)
         
         log_and_print(f"finished scanning all moves for board: {board}")
 
@@ -267,24 +266,15 @@ def run():
     # TODO: Correct recursion, 3 rows was not successful but should be
     # NOTE: Verify solution exists in Java implementation
     board = create_board(rows=4)
-
-    # Debugging possible moves
-    '''
-    board = remove_tacks(board, all_rows=[1, 2], all_cols=[0, 0])
-    all_moves = possible_moves(board)
-    log_and_print(f"board: {board}")
-    log_and_print(f"all_moves: {all_moves}")
-    '''
     # Must get around recursion error depth, attempting to raise limit
-    # NOTE: Possible recursion limit is okay, possible moves in recursion seems to be broken
-    
-    row, col = num_to_grid(1)
+    # NOTE: Possible recursion limit is okay, recursion storage
+    row, col = num_to_grid(1) 
     board = remove_tacks(board, all_rows=[row], all_cols=[col])
     cur_depth = sys.getrecursionlimit()
     new_depth = 5000
     sys.setrecursionlimit(new_depth)
     log_and_print(f"recursion limit raised from {cur_depth} to {new_depth}")
-    winning_moves = recursive_play(board, possible_moves(board), "", id=0, first_trial=True)
+    winning_moves = recursive_play(board, possible_moves(board), "", id=0, first_trial=True, recurse_counter=0)
     log_and_print(f"FIRST WINNING SEQUENCE: \n{winning_moves}")
     
 

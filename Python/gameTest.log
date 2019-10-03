@@ -2,8 +2,6 @@ INFO:root:recursion limit raised from 1000 to 5000
 INFO:root:tacks_left: 9
 INFO:root:moves_left: 2
 INFO:root:moves_list: ['4 to 2 to 1', '6 to 3 to 1']
-INFO:root:increasing id from 0 to 1
-INFO:root:og_board:
 INFO:root:x---
 INFO:root:ox--
 INFO:root:oxx-
@@ -16,11 +14,10 @@ INFO:root:oxx-
 INFO:root:xxxx
 INFO:root:next_history: START: 4 to 2 to 1
 INFO:root:id: 1
+INFO:root:recurse_counter: 0
 INFO:root:tacks_left: 8
 INFO:root:moves_left: 2
 INFO:root:moves_list: ['6 to 5 to 4', '9 to 5 to 2']
-INFO:root:increasing id from 1 to 2
-INFO:root:og_board:
 INFO:root:x---
 INFO:root:ox--
 INFO:root:xoo-
@@ -32,12 +29,11 @@ INFO:root:ox--
 INFO:root:xoo-
 INFO:root:xxxx
 INFO:root:next_history: START: 4 to 2 to 1 , 6 to 5 to 4
-INFO:root:id: 2
+INFO:root:id: 1
+INFO:root:recurse_counter: 1
 INFO:root:tacks_left: 7
 INFO:root:moves_left: 2
 INFO:root:moves_list: ['1 to 3 to 6', '7 to 4 to 2']
-INFO:root:increasing id from 2 to 3
-INFO:root:og_board:
 INFO:root:o---
 INFO:root:oo--
 INFO:root:xox-
@@ -49,12 +45,11 @@ INFO:root:oo--
 INFO:root:xox-
 INFO:root:xxxx
 INFO:root:next_history: START: 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6
-INFO:root:id: 3
+INFO:root:id: 1
+INFO:root:recurse_counter: 2
 INFO:root:tacks_left: 6
 INFO:root:moves_left: 2
 INFO:root:moves_list: ['7 to 4 to 2', '10 to 6 to 3']
-INFO:root:increasing id from 3 to 4
-INFO:root:og_board:
 INFO:root:o---
 INFO:root:xo--
 INFO:root:oox-
@@ -66,12 +61,11 @@ INFO:root:xo--
 INFO:root:oox-
 INFO:root:oxxx
 INFO:root:next_history: START: 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6 , 7 to 4 to 2
-INFO:root:id: 4
+INFO:root:id: 1
+INFO:root:recurse_counter: 3
 INFO:root:tacks_left: 5
 INFO:root:moves_left: 2
 INFO:root:moves_list: ['9 to 8 to 7', '10 to 6 to 3']
-INFO:root:increasing id from 4 to 5
-INFO:root:og_board:
 INFO:root:o---
 INFO:root:xo--
 INFO:root:oox-
@@ -83,12 +77,11 @@ INFO:root:xo--
 INFO:root:oox-
 INFO:root:xoox
 INFO:root:next_history: START: 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6 , 7 to 4 to 2 , 9 to 8 to 7
-INFO:root:id: 5
+INFO:root:id: 1
+INFO:root:recurse_counter: 4
 INFO:root:tacks_left: 4
 INFO:root:moves_left: 1
 INFO:root:moves_list: ['10 to 6 to 3']
-INFO:root:increasing id from 5 to 6
-INFO:root:og_board:
 INFO:root:o---
 INFO:root:xx--
 INFO:root:ooo-
@@ -100,13 +93,12 @@ INFO:root:xx--
 INFO:root:ooo-
 INFO:root:xooo
 INFO:root:next_history: START: 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6 , 7 to 4 to 2 , 9 to 8 to 7 , 10 to 6 to 3
-INFO:root:id: 6
+INFO:root:id: 1
+INFO:root:recurse_counter: 5
 INFO:root:tacks_left: 3
 INFO:root:moves_left: 0
 INFO:root:moves_list: []
 INFO:root:finished scanning all moves for board: ['o---', 'xx--', 'ooo-', 'xooo']
-INFO:root:increasing id from 5 to 6
-INFO:root:og_board:
 INFO:root:o---
 INFO:root:xx--
 INFO:root:ooo-
@@ -118,13 +110,12 @@ INFO:root:xx--
 INFO:root:ooo-
 INFO:root:xooo
 INFO:root:next_history: START: 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6 , 7 to 4 to 2 , 10 to 6 to 3
-INFO:root:id: 6
+INFO:root:id: 1
+INFO:root:recurse_counter: 4
 INFO:root:tacks_left: 3
 INFO:root:moves_left: 0
 INFO:root:moves_list: []
 INFO:root:finished scanning all moves for board: ['o---', 'xx--', 'ooo-', 'xooo']
-INFO:root:increasing id from 4 to 5
-INFO:root:og_board:
 INFO:root:o---
 INFO:root:xx--
 INFO:root:ooo-
@@ -136,13 +127,12 @@ INFO:root:xx--
 INFO:root:ooo-
 INFO:root:xooo
 INFO:root:next_history: START: 4 to 2 to 1 , 6 to 5 to 4 , 1 to 3 to 6 , 10 to 6 to 3
-INFO:root:id: 5
+INFO:root:id: 1
+INFO:root:recurse_counter: 3
 INFO:root:tacks_left: 3
 INFO:root:moves_left: 0
 INFO:root:moves_list: []
 INFO:root:finished scanning all moves for board: ['o---', 'xx--', 'ooo-', 'xooo']
-INFO:root:increasing id from 3 to 4
-INFO:root:og_board:
 INFO:root:o---
 INFO:root:xx--
 INFO:root:ooo-
@@ -154,13 +144,12 @@ INFO:root:xx--
 INFO:root:ooo-
 INFO:root:oooo
 INFO:root:next_history: START: 4 to 2 to 1 , 6 to 5 to 4 , 7 to 4 to 2
-INFO:root:id: 4
+INFO:root:id: 1
+INFO:root:recurse_counter: 2
 INFO:root:tacks_left: 2
 INFO:root:moves_left: 0
 INFO:root:moves_list: []
 INFO:root:finished scanning all moves for board: ['o---', 'xx--', 'ooo-', 'oooo']
-INFO:root:increasing id from 2 to 3
-INFO:root:og_board:
 INFO:root:o---
 INFO:root:xx--
 INFO:root:ooo-
@@ -172,13 +161,12 @@ INFO:root:xx--
 INFO:root:ooo-
 INFO:root:oooo
 INFO:root:next_history: START: 4 to 2 to 1 , 9 to 5 to 2
-INFO:root:id: 3
+INFO:root:id: 1
+INFO:root:recurse_counter: 1
 INFO:root:tacks_left: 2
 INFO:root:moves_left: 0
 INFO:root:moves_list: []
 INFO:root:finished scanning all moves for board: ['o---', 'xx--', 'ooo-', 'oooo']
-INFO:root:increasing id from 1 to 2
-INFO:root:og_board:
 INFO:root:x---
 INFO:root:xo--
 INFO:root:ooo-
@@ -191,11 +179,10 @@ INFO:root:ooo-
 INFO:root:oooo
 INFO:root:next_history: START: 6 to 3 to 1
 INFO:root:id: 2
+INFO:root:recurse_counter: 0
 INFO:root:tacks_left: 2
 INFO:root:moves_left: 1
 INFO:root:moves_list: ['1 to 2 to 4']
-INFO:root:increasing id from 2 to 3
-INFO:root:og_board:
 INFO:root:o---
 INFO:root:oo--
 INFO:root:xoo-
@@ -207,7 +194,8 @@ INFO:root:oo--
 INFO:root:xoo-
 INFO:root:oooo
 INFO:root:next_history: START: 6 to 3 to 1 , 1 to 2 to 4
-INFO:root:id: 3
+INFO:root:id: 2
+INFO:root:recurse_counter: 1
 INFO:root:tacks_left: 1
 INFO:root:moves_left: 0
 INFO:root:moves_list: []
