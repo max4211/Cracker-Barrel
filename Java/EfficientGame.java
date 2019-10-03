@@ -58,8 +58,8 @@ public class EfficientGame {
 			
 			System.out.println("Starting grid #" + (i + 1));
 			char[][] startBoard = removeOne(fillBoard(gridSize), row, col);
-			// makeGridPretty(startBoard, solutions);
-			// letsPlay(startBoard, id, "");
+			makeGridPretty(startBoard);
+			letsPlay(startBoard, id, "");
 			
 			winResults[i] = getResultsFromMap(1);
 			endTime = System.nanoTime();
@@ -110,19 +110,17 @@ public class EfficientGame {
 	}
 	
 	// Convert standard processing grid to a vertical grid
-	public static void makeGridPretty(char[][] gameBoard, PrintWriter solutions) {
+	public static void makeGridPretty(char[][] gameBoard) {
 		for (int i = 0; i < gridSize; i ++) {
 			String guy = "";
 			for (int j = 0; j < gridSize; j ++) {
 				guy += gameBoard[i][j];
 			}
-			System.out.println(guy);
-			solutions.println(guy);
-			
+			System.out.println(guy);			
 		}
 	}
 	public static void makeStringPretty(String boardString, PrintWriter solutions) {
-		makeGridPretty(stringToGrid(boardString), solutions);
+		makeGridPretty(stringToGrid(boardString));
 	}
 	
 	// Make the grid look more realistic (double dimensions, center all parts of the board)
@@ -210,7 +208,7 @@ public class EfficientGame {
 	}
 	
 	// Play the game, recursively calling yourself to generate a number of wincounts from a starting board
-	public static void letsPlay (char[][] myGrid, int id, String priorMoves, PrintWriter solutions)  {
+	public static void letsPlay (char[][] myGrid, int id, String priorMoves)  {
 		iterations ++;
 		boolean move = canMove(myGrid);
 		int tacksLeft = tackCount(myGrid);
@@ -224,7 +222,6 @@ public class EfficientGame {
 			// System.out.println("Solution reached, appending winningMoves");
 			winCount ++; // Increment win count with one tack left
 			winningMoves.put(id, priorMoves + separator); // Append winning move history
-			solutions.println(priorMoves + separator);
 		}
 		
 		if (!(tacksLeft == 1) && move) { // If no win and move possible, keep playing
@@ -242,7 +239,7 @@ public class EfficientGame {
 							// Now check if neighbor is occupied, and target is unoccupied
 							if (myGrid[i][j] == occupiedSpace && myGrid[nrow][ncol] == occupiedSpace && myGrid[trow][tcol] == emptySpace) {							
 								// Make the move, recursively call
-								letsPlay(makeMove(myGrid, i, j, nrow, ncol, trow, tcol), id+1, priorMoves + separator + moveCoordinates(i, j, trow, tcol), solutions);
+								letsPlay(makeMove(myGrid, i, j, nrow, ncol, trow, tcol), id+1, priorMoves + separator + moveCoordinates(i, j, trow, tcol));
 								// Undo move, keep going
 								myGrid = undoMove(myGrid, i, j, nrow, ncol, trow, tcol);
 							}
