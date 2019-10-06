@@ -17,12 +17,20 @@ This will be accomplished through gameplay backend construction and optimization
     1. Make it pretty
     2. Integrate learned rules to aid as "hints"
     3. iOS App?
+    
+#### Recursive Solutions From Starting Positions
+Starting Position              | Win Chance (%)  | Run Time (ms)
+------------------------------ | ----------------| --------------
+Corner point                   | 5.23%           | 3114 ms
+One offset                     | 5.05%           | 1231 ms
+Center of edge                 | 7.42%           | 5890 ms
+Center of board                | 1.12%           |  689 ms
   
 #### Optimization Log
 Algorithm Description          | Optimization (%) | Run Time (sec)
 ------------------------------ | -----------------| --------------
-Lookup Table for allowed moves | x%               | 10 seconds
-Reuse sequence of moves        | x%               | 10 seconds
+Lookup Table for allowed moves | x%               | x seconds
+Reuse sequence of moves        | x%               | x seconds
 
 ## Authors
 * Max Smith (max.smith@duke.edu)
